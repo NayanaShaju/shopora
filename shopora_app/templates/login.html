@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login_shopora</title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">   
+</head>
+<body>
+<div class="container">
+    <img src="{% static 'images/shopora_logo.png' %}" 
+     alt="Shopora Logo"
+     width="200" height="100">
+     <div class="login">
+        <h2>Login here</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter username" name="inp_name"><br><br>
+            <input type="email" placeholder="Enter email" name="inp_email"><br><br>
+            <input type="password" placeholder="Enter password" name="inp_pass"><br><br>
+            <button>Login</button>
+        </form>
+     </div>
+    <div style="color: red;">
+        {% if messages %}
+          {% for message in messages %}
+              <p>{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+    </div><br><br>
+    <p style="color: rgb(255, 0, 123);">Don't have an account?</p>
+    <button><a href="{% url 'register_user' %}" style="text-decoration: none;color: white"> Register here </a></button>
+</div>
+</body>
+</html>

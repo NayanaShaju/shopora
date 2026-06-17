@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+</head>
+<body>
+    <button ><a href="{% url 'home' %}">Home</a></button>
+    <h2>My Cart</h2>
+    <div class="product">
+    {% for item in items %}
+        <div class="product_card">
+        <img src="{{ item.product.image.url }}" style="height: 150px;width: 150px;">
+        <h3>{{ item.product.product_name }}</h3>
+        <p>Price: ₹{{ item.product.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <button><a href="{% url 'cdelete' item.id %}">Remove</a></button><br>
+        <button><a href="{% url 'increase' item.id %}">+</a></button>
+        <button><a href="{% url 'decrease' item.id %}">-</a></button>
+        </div>
+    {% endfor %}  
+    </div>
+    <br><br>
+    <button><a href="{% url 'corder' %}">Confirm Order</a></button>
+
+</body>
+</html>

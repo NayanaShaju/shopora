@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+</head>
+<body>
+    <button ><a href="{% url 'home' %}">Home</a></button>
+    <h2>My Wishlist</h2>
+    <div class="product">
+    {% for item in items %}
+        <div class="product_card">
+        <img src="{{ item.product.image.url }}" style="height: 150px;width: 150px;" >
+        <h3>{{ item.product.product_name }}</h3>
+        <p>Price: ₹{{ item.product.price }}</p>
+        <button><a href="{% url 'wdelete' item.id %}">Remove</a></button>
+        </div>
+    {% endfor %} 
+    </div>
+
+</body>
+</html>
