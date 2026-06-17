@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent orders shopora</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <button ><a href="{% url 'home' %}">Home</a></button>
+    <h2>Recent Orders</h2>
+    <div class="product">
+    {% for i in a %}
+        <div class="product_card">
+        <img src="{{ i.product.image.url }}" style="height: 150px;width: 150px;">
+        <h3>{{ i.product.product_name }}</h3>
+        <p>Quantity: {{ i.quantity }}</p>
+        {% empty %}
+        <h3>No orders yet.</h3>
+    {% endfor %}  
+    </div>
+    <br><br>
+     
+</body>
+</html>

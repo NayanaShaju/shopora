@@ -15,5 +15,6 @@ urlpatterns = [
     path('delete_c/<int:id>',views.delete_c,name='cdelete'),
     path('increase_quantity/<int:id>', views.increase_quantity, name='increase'),
     path('decrease_quantity/<int:id>', views.decrease_quantity, name='decrease'),
-    path('order_confirm/',views.order_confirm,name='corder')
+    path('order_confirm/',views.order_confirm,name='corder'),
+    path('recent_orders/',views.recent_orders,name='recent'),
 ]

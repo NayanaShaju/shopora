@@ -41,3 +41,10 @@ class WishlistItem(models.Model):
     product = models.ForeignKey(products, on_delete=models.CASCADE)
     def __str__(self):
         return self.product.product_name
+    
+class ordered_pro(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(products, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    def __str__(self):
+        return self.product.product_name

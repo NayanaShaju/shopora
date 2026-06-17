@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from . models import profile_table
 from django.contrib import messages
-from .models import products,Cart,CartItem,Wishlist,WishlistItem
+from .models import products,Cart,CartItem,Wishlist,WishlistItem,ordered_pro
 
 # Create your views here.
 def login_user(request):
@@ -129,9 +129,16 @@ def decrease_quantity(request, id):
         cart_item.delete()     
     return redirect('cart')
 def order_confirm(request):
-    a=CartItem.objects.all()
+    cart = Cart.objects.get(user=request.user)
+    a= CartItem.objects.filter(cart=cart)
+    for i in a:
+        ordered_pro.objects.create(user=request.user,product=i.product,quantity=i.quantity)
     a.delete()
     return render(request,'order.html')
+
+def recent_orders(request):
+    a=ordered_pro.objects.filter(user=request.user)
+    return render(request,'recent.html',{'a':a})
 
 
 
